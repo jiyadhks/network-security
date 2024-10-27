@@ -15,7 +15,7 @@ FILE_NAME: str = "phishingData.csv"
 TRAIN_FILE_NAME: str = "train.csv"
 TEST_FILE_NAME:str = "test.csv"
 SCHEMA_FILE_PATH: str = os.path.join("data_schema","schema.yaml")
-
+PREPROCESSING_OBJECT_FILE_NAME: str = "preprocessing.pkl"
 
 """
 Data Ingestion related constants start with DATA_INGESTION VAR NAME
