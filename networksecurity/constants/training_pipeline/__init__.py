@@ -18,7 +18,7 @@ SCHEMA_FILE_PATH: str = os.path.join("data_schema","schema.yaml")
 PREPROCESSING_OBJECT_FILE_NAME: str = "preprocessing.pkl"
 SAVED_MODEL_DIR: str = os.path.join("saved_models")
 MODEL_FILE_NAME: str = "model.pkl"
-TRAINING_BUCKET_NAME: str = "networksecurity"
+TRAINING_BUCKET_NAME: str = "networksecurity23"
 MODEL_DIR: str = "final_model"
 
 """
