@@ -1,5 +1,7 @@
 import os
 import sys
+from dotenv import load_dotenv
+load_dotenv()
 from networksecurity.exception.exception import NetworkSecurityException
 from networksecurity.logging.logger import logging
 
@@ -27,7 +29,12 @@ from networksecurity.cloud.s3_syncer import S3Sync
 class TrainingPipeline:
     def __init__(self) -> None:
         self.training_pipeline_config = TrainingPipelineConfig()
-        self.s3_sync = S3Sync()
+        self.s3_sync = S3Sync(
+            self.training_pipeline_config.aws_access_key,
+            self.training_pipeline_config.aws_secret_key,
+            self.training_pipeline_config.training_bucket_region,
+            self.training_pipeline_config.training_bucket_name
+        )
 
     def start_data_ingestion(self):
         try:
@@ -75,16 +82,14 @@ class TrainingPipeline:
     ## local artifact is going to s3 bucket    
     def sync_artifact_dir_to_s3(self):
         try:
-            aws_bucket_url = f"s3://{TRAINING_BUCKET_NAME}/artifact/{self.training_pipeline_config.timestamp}"
-            self.s3_sync.sync_folder_to_s3(folder = self.training_pipeline_config.artifact_dir, aws_bucket_url=aws_bucket_url)
+            self.s3_sync.upload_directory(local_folder=self.training_pipeline_config.artifact_name, s3_folder=self.training_pipeline_config.artifact_name)
         except Exception as e:
             raise NetworkSecurityException(e, sys)
         
     ## local final model is getting pushed to s3 bucket
     def sync_saved_model_dir_to_s3(self):
         try:
-            aws_bucket_url = f"s3://{TRAINING_BUCKET_NAME}/final_model/{self.training_pipeline_config.timestamp}"
-            self.s3_sync.sync_folder_to_s3(folder = self.training_pipeline_config.model_dir, aws_bucket_url=aws_bucket_url)
+            self.s3_sync.upload_directory(self.training_pipeline_config.model_dir, self.training_pipeline_config.model_dir)
         except Exception as e:
             raise NetworkSecurityException(e, sys)
 

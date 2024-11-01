@@ -20,6 +20,7 @@ SAVED_MODEL_DIR: str = os.path.join("saved_models")
 MODEL_FILE_NAME: str = "model.pkl"
 TRAINING_BUCKET_NAME: str = "networksecurity23"
 MODEL_DIR: str = "final_model"
+TRAINING_BUCKET_REGION = "us-east-1"
 
 """
 Data Ingestion related constants start with DATA_INGESTION VAR NAME

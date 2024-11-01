@@ -10,7 +10,11 @@ class TrainingPipelineConfig:
         self.artifact_dir = os.path.join(self.artifact_name, timestamp)
         self.timestamp: str = timestamp
         self.model_dir: str = training_pipeline.MODEL_DIR
-
+        self.training_bucket_name: str = training_pipeline.TRAINING_BUCKET_NAME
+        self.training_bucket_region: str = training_pipeline.TRAINING_BUCKET_REGION
+        self.aws_access_key: str = os.getenv("ACCESS_KEY")
+        self.aws_secret_key: str = os.getenv("SECRET_KEY")
+        
 class DataIngestionConfig:
     def __init__(self, training_pipeline_config:TrainingPipelineConfig) -> None:
         self.data_ingestion_dir: str = os.path.join(
