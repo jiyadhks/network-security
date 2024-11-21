@@ -107,5 +107,3 @@ class TrainingPipeline:
             return model_trainer_artifact
         except Exception as e:
             raise NetworkSecurityException(e, sys)
-        
-    
