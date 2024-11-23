@@ -1,6 +1,7 @@
 venv
 .env
-tests
-Design_Doc
-final_model
-logs
+tests/
+Design_Doc/
+final_model/
+logs/
+mlruns/

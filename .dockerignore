@@ -1,3 +1,4 @@
 __pycache__/
 logs/
-Design_Doc
+Design_Doc/
+mlruns/
