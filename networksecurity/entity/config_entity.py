@@ -15,6 +15,7 @@ class TrainingPipelineConfig:
         self.aws_access_key: str = os.getenv("ACCESS_KEY")
         self.aws_secret_key: str = os.getenv("SECRET_KEY")
         
+        
 class DataIngestionConfig:
     def __init__(self, training_pipeline_config:TrainingPipelineConfig) -> None:
         self.data_ingestion_dir: str = os.path.join(
